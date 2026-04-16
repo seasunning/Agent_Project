@@ -1,0 +1,6 @@
+1. 安装后端依赖：pip install fastapi uvicorn sqlalchemy pydantic
+2. 安装前端依赖：npm install vue@next vue-router@next pinia axios
+3. 初始化SQLite数据库：运行后端数据库初始化脚本
+4. 启动后端服务器：uvicorn app.main:app --reload
+5. 启动前端开发服务器：npm run serve
+6. 访问前端应用：http://localhost:8080

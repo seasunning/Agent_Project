@@ -1,0 +1,421 @@
+/* 贪吃蛇游戏 - 主样式文件 */
+
+/* 全局重置与基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e6e6e6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* 游戏容器 */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    max-width: 900px;
+    width: 100%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 游戏标题 */
+.game-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.game-subtitle {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #a0a0c0;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+/* 游戏主区域 */
+.game-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+/* 画布区域 */
+.canvas-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.canvas-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border: 3px solid #2d3047;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: #0f1123;
+}
+
+/* 游戏信息面板 */
+.info-panel {
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px;
+    background: rgba(30, 30, 46, 0.8);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.score-container {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #2d3047, #1c1e2e);
+    border-radius: 12px;
+    border: 2px solid #3a3d5c;
+}
+
+.score-label {
+    font-size: 1.1rem;
+    color: #b0b0d0;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+#scoreValue {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #00ff9d;
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+}
+
+.high-score {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #ffcc00;
+}
+
+/* 控制面板 */
+.controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-label {
+    font-size: 1rem;
+    color: #a0a0c0;
+    font-weight: 500;
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 14px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #00dbde, #fc00ff);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 219, 222, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 219, 222, 0.6);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e6e6e6;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* 游戏状态指示器 */
+.status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status-running .status-dot {
+    background-color: #00ff9d;
+    box-shadow: 0 0 10px #00ff9d;
+}
+
+.status-paused .status-dot {
+    background-color: #ffcc00;
+    box-shadow: 0 0 10px #ffcc00;
+}
+
+.status-gameover .status-dot {
+    background-color: #ff4757;
+    box-shadow: 0 0 10px #ff4757;
+}
+
+/* 游戏说明 */
+.instructions {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border-left: 4px solid #00dbde;
+}
+
+.instructions h3 {
+    color: #00dbde;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.instructions ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    color: #c0c0e0;
+}
+
+.instructions li:before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: #fc00ff;
+}
+
+/* 游戏结束遮罩 */
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 17, 35, 0.95);
+    color: white;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.game-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.overlay-content {
+    text-align: center;
+    padding: 40px;
+    background: rgba(45, 48, 71, 0.9);
+    border-radius: 20px;
+    border: 2px solid #00dbde;
+    max-width: 500px;
+    width: 90%;
+}
+
+.overlay-title {
+    font-size: 2.5rem;
+    color: #ff4757;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(255, 71, 87, 0.5);
+}
+
+.overlay-message {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #e6e6e6;
+    line-height: 1.6;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+    }
+    
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .game-main {
+        flex-direction: column;
+    }
+    
+    .info-panel {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .canvas-section {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .game-container {
+        padding: 15px;
+    }
+    
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    #scoreValue {
+        font-size: 2.5rem;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* 网格线样式（可选） */
+.grid-line {
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 1;
+}
+
+/* 蛇身样式 */
+.snake-segment {
+    fill: #00ff9d;
+    stroke: #00cc7a;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 157, 0.5));
+}
+
+.snake-head {
+    fill: #00dbde;
+    stroke: #00b4b7;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 8px rgba(0, 219, 222, 0.7));
+}
+
+/* 食物样式 */
+.food {
+    fill: #ff4757;
+    stroke: #ff2e43;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 10px rgba(255, 71, 87, 0.7));
+}
+
+/* 页脚 */
+.game-footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #707090;
+    font-size: 0.9rem;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.game-footer a {
+    color: #00dbde;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.game-footer a:hover {
+    color: #fc00ff;
+    text-decoration: underline;
+}

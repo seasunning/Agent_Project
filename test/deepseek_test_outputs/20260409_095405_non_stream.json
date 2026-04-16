@@ -1,0 +1,96 @@
+{
+  "request": {
+    "model": "deepseek-chat",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个用于接口联调测试的模型。请先进行思考，再用 JSON 返回一个简短结果。"
+      },
+      {
+        "role": "user",
+        "content": "请分析以下需求并返回简短 JSON：用户需要一个图书管理系统，支持图书录入、借阅、归还、库存查询。请输出字段：summary, modules, risks。"
+      }
+    ],
+    "stream": false,
+    "temperature": 0.2,
+    "extra_body": {
+      "thinking": {
+        "type": "enabled"
+      }
+    }
+  },
+  "status_code": 200,
+  "headers": {
+    "Server": "openresty",
+    "Content-Type": "application/json",
+    "vary": "origin, access-control-request-method, access-control-request-headers",
+    "access-control-allow-credentials": "true",
+    "x-ds-trace-id": "ae3ab64a996e81ddfee9632685b16f20",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+    "X-Content-Type-Options": "nosniff",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Date": "Thu, 09 Apr 2026 01:54:09 GMT",
+    "EO-LOG-UUID": "17210491469326655784",
+    "EO-Cache-Status": "MISS"
+  },
+  "elapsed_seconds": 3.803908586502075,
+  "response_json": {
+    "id": "507bddcd-7e8e-457e-a5c0-65abf6e1a516",
+    "object": "chat.completion",
+    "created": 1775699649,
+    "model": "deepseek-chat",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n{\n  \"summary\": \"图书管理系统需支持图书录入、借阅、归还和库存查询四大核心功能，实现图书全生命周期管理。\",\n  \"modules\": [\"图书录入模块\", \"借阅管理模块\", \"归还处理模块\", \"库存查询模块\"],\n  \"risks\": [\"数据一致性风险（借阅/归还并发操作）\", \"库存数据实时性风险\", \"用户权限管理风险\"]\n}\n```"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 63,
+      "completion_tokens": 92,
+      "total_tokens": 155,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 63
+    },
+    "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache_new_kvcache"
+  },
+  "normalized": {
+    "id": "507bddcd-7e8e-457e-a5c0-65abf6e1a516",
+    "object": "chat.completion",
+    "created": 1775699649,
+    "model": "deepseek-chat",
+    "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache_new_kvcache",
+    "choice_index": 0,
+    "finish_reason": "stop",
+    "message_role": "assistant",
+    "message_content": "```json\n{\n  \"summary\": \"图书管理系统需支持图书录入、借阅、归还和库存查询四大核心功能，实现图书全生命周期管理。\",\n  \"modules\": [\"图书录入模块\", \"借阅管理模块\", \"归还处理模块\", \"库存查询模块\"],\n  \"risks\": [\"数据一致性风险（借阅/归还并发操作）\", \"库存数据实时性风险\", \"用户权限管理风险\"]\n}\n```",
+    "message_reasoning_content": null,
+    "usage": {
+      "prompt_tokens": 63,
+      "completion_tokens": 92,
+      "total_tokens": 155,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 63
+    },
+    "usage_fields_present": [
+      "completion_tokens",
+      "prompt_cache_hit_tokens",
+      "prompt_cache_miss_tokens",
+      "prompt_tokens",
+      "prompt_tokens_details",
+      "total_tokens"
+    ]
+  }
+}

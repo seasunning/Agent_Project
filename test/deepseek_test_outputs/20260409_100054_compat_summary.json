@@ -1,0 +1,115 @@
+{
+  "timestamp": "20260409_100054",
+  "results": [
+    {
+      "case_id": "chat_extra_body",
+      "label": "deepseek-chat + extra_body.thinking",
+      "non_stream": {
+        "status_code": 200,
+        "model": "deepseek-chat",
+        "finish_reason": "stop",
+        "has_reasoning_content": false,
+        "reasoning_length": 0,
+        "content_length": 1091,
+        "usage_fields_present": [
+          "completion_tokens",
+          "prompt_cache_hit_tokens",
+          "prompt_cache_miss_tokens",
+          "prompt_tokens",
+          "prompt_tokens_details",
+          "total_tokens"
+        ]
+      },
+      "stream_turn_1": {
+        "status_code": 200,
+        "has_reasoning_content": false,
+        "reasoning_length": 0,
+        "content_length": 213,
+        "finish_reason": "stop",
+        "has_reasoning_field_path": false
+      },
+      "stream_turn_2": {
+        "status_code": 200,
+        "has_reasoning_content": false,
+        "reasoning_length": 0,
+        "content_length": 212,
+        "finish_reason": "stop",
+        "has_reasoning_field_path": false
+      }
+    },
+    {
+      "case_id": "chat_top_level",
+      "label": "deepseek-chat + 顶层 thinking",
+      "non_stream": {
+        "status_code": 200,
+        "model": "deepseek-reasoner",
+        "finish_reason": "stop",
+        "has_reasoning_content": true,
+        "reasoning_length": 1666,
+        "content_length": 446,
+        "usage_fields_present": [
+          "completion_tokens",
+          "completion_tokens_details",
+          "prompt_cache_hit_tokens",
+          "prompt_cache_miss_tokens",
+          "prompt_tokens",
+          "prompt_tokens_details",
+          "total_tokens"
+        ]
+      },
+      "stream_turn_1": {
+        "status_code": 200,
+        "has_reasoning_content": true,
+        "reasoning_length": 451,
+        "content_length": 37,
+        "finish_reason": "stop",
+        "has_reasoning_field_path": true
+      },
+      "stream_turn_2": {
+        "status_code": 200,
+        "has_reasoning_content": true,
+        "reasoning_length": 189,
+        "content_length": 35,
+        "finish_reason": "stop",
+        "has_reasoning_field_path": true
+      }
+    },
+    {
+      "case_id": "reasoner_model",
+      "label": "deepseek-reasoner",
+      "non_stream": {
+        "status_code": 200,
+        "model": "deepseek-reasoner",
+        "finish_reason": "stop",
+        "has_reasoning_content": true,
+        "reasoning_length": 1279,
+        "content_length": 636,
+        "usage_fields_present": [
+          "completion_tokens",
+          "completion_tokens_details",
+          "prompt_cache_hit_tokens",
+          "prompt_cache_miss_tokens",
+          "prompt_tokens",
+          "prompt_tokens_details",
+          "total_tokens"
+        ]
+      },
+      "stream_turn_1": {
+        "status_code": 200,
+        "has_reasoning_content": true,
+        "reasoning_length": 519,
+        "content_length": 116,
+        "finish_reason": "stop",
+        "has_reasoning_field_path": true
+      },
+      "stream_turn_2": {
+        "status_code": 200,
+        "has_reasoning_content": true,
+        "reasoning_length": 344,
+        "content_length": 24,
+        "finish_reason": "stop",
+        "has_reasoning_field_path": true
+      }
+    }
+  ]
+}

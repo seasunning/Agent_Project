@@ -1,0 +1,25 @@
+DeepSeek 三种接入方式兼容性测试说明
+================================
+
+测试目标：比较三种接法是否返回 reasoning_content。
+
+结果摘要：
+- deepseek-chat + extra_body.thinking
+  - 非流式 reasoning_content: False，长度=0
+  - 流式 Turn1 reasoning_content: False，长度=0，字段路径存在=False
+  - 流式 Turn2 reasoning_content: False，长度=0，字段路径存在=False
+
+- deepseek-chat + 顶层 thinking
+  - 非流式 reasoning_content: True，长度=1666
+  - 流式 Turn1 reasoning_content: True，长度=451，字段路径存在=True
+  - 流式 Turn2 reasoning_content: True，长度=189，字段路径存在=True
+
+- deepseek-reasoner
+  - 非流式 reasoning_content: True，长度=1279
+  - 流式 Turn1 reasoning_content: True，长度=519，字段路径存在=True
+  - 流式 Turn2 reasoning_content: True，长度=344，字段路径存在=True
+
+对接建议：
+1. 后端统一保留 content、reasoning_content、finish_reason、usage、model、id。
+2. reasoning_content 必须作为可选字段处理。
+3. 前端先保证 content 流式渲染，再决定是否展示 reasoning 通道。

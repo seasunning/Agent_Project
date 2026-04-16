@@ -1,0 +1,87 @@
+{
+  "timestamp": "20260409_095405",
+  "non_stream_normalized": {
+    "id": "507bddcd-7e8e-457e-a5c0-65abf6e1a516",
+    "object": "chat.completion",
+    "created": 1775699649,
+    "model": "deepseek-chat",
+    "system_fingerprint": "fp_eaab8d114b_prod0820_fp8_kvcache_new_kvcache",
+    "choice_index": 0,
+    "finish_reason": "stop",
+    "message_role": "assistant",
+    "message_content": "```json\n{\n  \"summary\": \"图书管理系统需支持图书录入、借阅、归还和库存查询四大核心功能，实现图书全生命周期管理。\",\n  \"modules\": [\"图书录入模块\", \"借阅管理模块\", \"归还处理模块\", \"库存查询模块\"],\n  \"risks\": [\"数据一致性风险（借阅/归还并发操作）\", \"库存数据实时性风险\", \"用户权限管理风险\"]\n}\n```",
+    "message_reasoning_content": null,
+    "usage": {
+      "prompt_tokens": 63,
+      "completion_tokens": 92,
+      "total_tokens": 155,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 63
+    },
+    "usage_fields_present": [
+      "completion_tokens",
+      "prompt_cache_hit_tokens",
+      "prompt_cache_miss_tokens",
+      "prompt_tokens",
+      "prompt_tokens_details",
+      "total_tokens"
+    ]
+  },
+  "stream_turn_1_preview": {
+    "reasoning_length": 0,
+    "content_length": 207,
+    "field_paths": [
+      "choices",
+      "choices[0]",
+      "choices[0].delta",
+      "choices[0].delta.content",
+      "choices[0].delta.role",
+      "choices[0].finish_reason",
+      "choices[0].index",
+      "choices[0].logprobs",
+      "created",
+      "id",
+      "model",
+      "object",
+      "system_fingerprint",
+      "usage",
+      "usage.completion_tokens",
+      "usage.prompt_cache_hit_tokens",
+      "usage.prompt_cache_miss_tokens",
+      "usage.prompt_tokens",
+      "usage.prompt_tokens_details",
+      "usage.prompt_tokens_details.cached_tokens",
+      "usage.total_tokens"
+    ]
+  },
+  "stream_turn_2_preview": {
+    "reasoning_length": 0,
+    "content_length": 212,
+    "field_paths": [
+      "choices",
+      "choices[0]",
+      "choices[0].delta",
+      "choices[0].delta.content",
+      "choices[0].delta.role",
+      "choices[0].finish_reason",
+      "choices[0].index",
+      "choices[0].logprobs",
+      "created",
+      "id",
+      "model",
+      "object",
+      "system_fingerprint",
+      "usage",
+      "usage.completion_tokens",
+      "usage.prompt_cache_hit_tokens",
+      "usage.prompt_cache_miss_tokens",
+      "usage.prompt_tokens",
+      "usage.prompt_tokens_details",
+      "usage.prompt_tokens_details.cached_tokens",
+      "usage.total_tokens"
+    ]
+  }
+}

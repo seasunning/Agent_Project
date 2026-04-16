@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇游戏 - HTML5 Canvas版</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1><i class="fas fa-gamepad"></i> 贪吃蛇大冒险</h1>
+            <p class="subtitle">基于HTML5 Canvas的经典游戏</p>
+        </header>
+        
+        <main class="game-main">
+            <div class="game-board">
+                <div class="canvas-wrapper">
+                    <canvas id="gameCanvas" width="600" height="600">
+                        您的浏览器不支持Canvas，请升级到现代浏览器。
+                    </canvas>
+                    <div id="gameOverlay" class="game-overlay">
+                        <div id="startScreen" class="overlay-content active">
+                            <h2><i class="fas fa-play-circle"></i> 贪吃蛇游戏</h2>
+                            <p class="instructions">使用方向键控制蛇的移动，吃到食物增长身体，避免撞墙或撞到自己！</p>
+                            <button id="startButton" class="btn btn-primary">
+                                <i class="fas fa-play"></i> 开始游戏
+                            </button>
+                            <div class="controls-info">
+                                <h3><i class="fas fa-keyboard"></i> 控制说明</h3>
+                                <div class="control-keys">
+                                    <div class="key-row">
+                                        <div class="key"><i class="fas fa-arrow-up"></i></div>
+                                    </div>
+                                    <div class="key-row">
+                                        <div class="key"><i class="fas fa-arrow-left"></i></div>
+                                        <div class="key"><i class="fas fa-arrow-down"></i></div>
+                                        <div class="key"><i class="fas fa-arrow-right"></i></div>
+                                    </div>
+                                </div>
+                                <p>空格键：暂停/继续游戏</p>
+                            </div>
+                        </div>
+                        
+                        <div id="pauseScreen" class="overlay-content">
+                            <h2><i class="fas fa-pause-circle"></i> 游戏暂停</h2>
+                            <p class="score-display">当前分数: <span id="pauseScore">0</span></p>
+                            <button id="resumeButton" class="btn btn-primary">
+                                <i class="fas fa-play"></i> 继续游戏
+                            </button>
+                            <button id="restartButton" class="btn btn-secondary">
+                                <i class="fas fa-redo"></i> 重新开始
+                            </button>
+                        </div>
+                        
+                        <div id="gameOverScreen" class="overlay-content">
+                            <h2><i class="fas fa-skull-crossbones"></i> 游戏结束</h2>
+                            <div class="final-score">
+                                <h3>最终得分</h3>
+                                <div class="score-number" id="finalScore">0</div>
+                            </div>
+                            <button id="playAgainButton" class="btn btn-primary">
+                                <i class="fas fa-redo"></i> 再玩一次
+                            </button>
+                            <div class="high-score">
+                                <p>最高分: <span id="highScore">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="game-info">
+                    <div class="score-panel">
+                        <div class="score-item">
+                            <h3><i class="fas fa-star"></i> 当前分数</h3>
+                            <div class="score-value" id="currentScore">0</div>
+                        </div>
+                        <div class="score-item">
+                            <h3><i class="fas fa-trophy"></i> 最高分</h3>
+                            <div class="score-value" id="bestScore">0</div>
+                        </div>
+                        <div class="score-item">
+                            <h3><i class="fas fa-ruler"></i> 蛇长度</h3>
+                            <div class="score-value" id="snakeLength">3</div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="pauseBtn" class="btn btn-control">
+                            <i class="fas fa-pause"></i> 暂停
+                        </button>
+                        <button id="restartBtn" class="btn btn-control">
+                            <i class="fas fa-redo"></i> 重启
+                        </button>
+                        <button id="soundToggle" class="btn btn-control">
+                            <i class="fas fa-volume-up"></i> 声音
+                        </button>
+                    </div>
+                    
+                    <div class="game-stats">
+                        <h3><i class="fas fa-chart-line"></i> 游戏统计</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">食物吃掉:</span>
+                                <span class="stat-value" id="foodEaten">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">游戏时间:</span>
+                                <span class="stat-value" id="gameTime">0s</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">移动次数:</span>
+                                <span class="stat-value" id="moveCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-instructions">
+                <h3><i class="fas fa-info-circle"></i> 游戏规则</h3>
+                <ul>
+                    <li><i class="fas fa-apple-alt"></i> 控制蛇吃掉红色食物，每吃一个得10分</li>
+                    <li><i class="fas fa-snake"></i> 蛇吃到食物后身体会变长</li>
+                    <li><i class="fas fa-ban"></i> 避免蛇头撞到墙壁或自己的身体</li>
+                    <li><i class="fas fa-tachometer-alt"></i> 随着分数增加，游戏速度会逐渐加快</li>
+                    <li><i class="fas fa-medal"></i> 挑战最高分，成为贪吃蛇大师！</li>
+                </ul>
+            </div>
+        </main>
+        
+        <footer class="game-footer">
+            <p>© 2023 贪吃蛇游戏 | 基于HTML5 Canvas技术 | 
+                <a href="#" id="toggleGrid">切换网格</a> | 
+                <a href="#" id="toggleTheme">切换主题</a>
+            </p>
+            <div class="tech-badges">
+                <span class="badge">HTML5</span>
+                <span class="badge">CSS3</span>
+                <span class="badge">JavaScript</span>
+                <span class="badge">Canvas API</span>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 游戏音效 -->
+    <audio id="eatSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="gameOverSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-retro-game-emergency-alarm-1000.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="moveSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-game-ball-tap-2073.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- JavaScript模块 -->
+    <script src="js/game/GameController.js"></script>
+    <script src="js/game/SnakeManager.js"></script>
+    <script src="js/game/FoodManager.js"></script>
+    <script src="js/game/RenderEngine.js"></script>
+    <script src="js/game/InputHandler.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // 页面加载完成后初始化游戏
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('贪吃蛇游戏加载完成！');
+            console.log('技术栈: HTML5, CSS3, JavaScript, Canvas API');
+            console.log('模块: GameController, SnakeManager, FoodManager, RenderEngine, InputHandler');
+            
+            // 显示欢迎信息
+            setTimeout(() => {
+                const startScreen = document.getElementById('startScreen');
+                if (startScreen) {
+                    startScreen.classList.add('active');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

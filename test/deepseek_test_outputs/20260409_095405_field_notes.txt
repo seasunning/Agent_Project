@@ -1,0 +1,34 @@
+DeepSeek 接口测试字段记录
+========================
+
+一、非流式返回中建议前端重点关注字段
+- id: 请求唯一标识
+- object: 返回对象类型
+- created: 时间戳
+- model: 实际模型名
+- choices[0].index: 选择序号
+- choices[0].finish_reason: 停止原因
+- choices[0].message.role: 消息角色
+- choices[0].message.content: 最终回答
+- choices[0].message.reasoning_content: 思考内容（若返回）
+- usage.*: token 消耗统计
+
+二、流式返回中建议前端重点关注字段
+- 每个 SSE 事件以 data: 开头
+- [DONE] 表示流结束
+- chunk.id / chunk.model / chunk.created: 基础元数据
+- chunk.choices[0].delta.reasoning_content: 思考流增量
+- chunk.choices[0].delta.content: 最终回答流增量
+- chunk.choices[0].finish_reason: 当前 chunk 或最后结束原因
+
+三、当前测试观测结果摘要
+- 非流式 model: deepseek-chat
+- 非流式 usage 字段: ['completion_tokens', 'prompt_cache_hit_tokens', 'prompt_cache_miss_tokens', 'prompt_tokens', 'prompt_tokens_details', 'total_tokens']
+- 流式 Turn1 字段路径数: 21
+- 流式 Turn2 字段路径数: 21
+
+四、前后端对接建议
+- 后端统一将 DeepSeek 原始返回保存一份，避免字段遗漏。
+- 流式模式下，前端至少需要区分 reasoning_content 与 content 两条渲染通道。
+- 对 finish_reason、usage、id 建议完整透传，方便日志追踪与计费统计。
+- 如果前端不展示思考内容，也建议后端保留 reasoning_content 以便调试。
